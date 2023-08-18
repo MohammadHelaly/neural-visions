@@ -1,0 +1,25 @@
+.copyright {
+	margin-bottom: 0.65vh;
+	font-weight: 50;
+	font-size: small;
+	margin-left: 1.5vh;
+}
+
+.footer-container {
+	opacity: 0;
+	transition: all 2s ease;
+}
+
+.animate {
+	opacity: 1;
+}
+
+@media (max-width: 990px) {
+	.copyright {
+		margin-left: 0;
+	}
+
+	.footer-container {
+		text-align: center;
+	}
+}
