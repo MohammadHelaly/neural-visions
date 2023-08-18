@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { set, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
@@ -13,14 +13,14 @@ const schema = z
 	})
 	.refine(
 		(data) => {
-			return data.image[0] || data.image_url;
+			return data.image || data.image_url;
 		},
 		{ message: "Please upload an image or provide an image URL." }
 	);
 
 const VQnAForm = () => {
 	const [answer, setAnswer] = useState("It's Sunny.");
-	const [answerType, setAnswerType] = useState("Other");
+	const [answerType, setAnswerType] = useState("Other.");
 	const [answerability, setAnswerability] = useState("86%");
 	const formRef1 = useAnimate("animate-form", false);
 	const formRef2 = useAnimate("animate-form", false);
@@ -29,6 +29,7 @@ const VQnAForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm({
 		mode: "onSubmit",
 		resolver: zodResolver(schema),
@@ -38,13 +39,12 @@ const VQnAForm = () => {
 		const formData = new FormData();
 
 		formData.append("question", data.question);
-		if (data.image[0]) {
+		if (data.image) {
 			formData.append("image", data.image[0]);
 		} else if (data.image_url) {
 			formData.append("image_url", data.image_url);
 		}
-		console.log(data);
-		console.log(formData);
+
 		setAnswer("Loading...");
 		setAnswerType("Loading...");
 		setAnswerability("Loading...");
@@ -52,8 +52,6 @@ const VQnAForm = () => {
 		axios
 			.post("http://localhost:5000/predict", formData)
 			.then((res) => {
-				console.log(res);
-
 				const originalAnswer = res.data.answer;
 				const originalAnswerType = res.data.answer_type;
 				const originalAnswerability = res.data.answerability;
@@ -76,17 +74,19 @@ const VQnAForm = () => {
 
 				setAnswer(capitalizedAnswer);
 				setAnswerType(capitalizedAnswerType);
-				// setAnswer(res.data.answer);
-				// setAnswerType(res.data.answer_type);
 				setAnswerability(modifiedAnswerability);
 			})
 			.catch((err) => {
-				console.error("Error sending data:", err);
 				setAnswer("Something went wrong...");
 				setAnswerType("--");
 				setAnswerability("--");
 			});
 	};
+
+	const url = watch("image_url");
+	const image = watch("image");
+	console.log(url);
+	console.log(image);
 
 	return (
 		<div className="vqna">
@@ -110,9 +110,6 @@ const VQnAForm = () => {
 									}`}>
 									Question:
 								</label>
-								{/* <div className="invalid-feedback">
-									{errors.question?.message}
-								</div> */}
 							</div>
 							<div className="form-floating mb-4">
 								<input
@@ -120,7 +117,11 @@ const VQnAForm = () => {
 									className={`form-control custom-input ${
 										errors.image ? "is-invalid" : ""
 									}`}
-									{...register("image")}
+									{...register("image", {
+										disabled:
+											watch("image_url") !== undefined &&
+											watch("image_url") !== "",
+									})}
 								/>
 								<label
 									htmlFor="image"
@@ -130,9 +131,6 @@ const VQnAForm = () => {
 									{" "}
 									Upload Image:
 								</label>
-								{/* <div className="invalid-feedback">
-									{errors.image?.message}
-								</div> */}
 							</div>
 							<div className="form-floating mb-4">
 								<input
@@ -140,7 +138,11 @@ const VQnAForm = () => {
 									className={`form-control custom-input ${
 										errors.image_url ? "is-invalid" : ""
 									}`}
-									{...register("image_url")}
+									{...register("image_url", {
+										disabled:
+											watch("image") !== undefined &&
+											watch("image")[0] !== undefined,
+									})}
 								/>
 								<label
 									htmlFor="image_url"
@@ -149,9 +151,6 @@ const VQnAForm = () => {
 									}`}>
 									Image URL:
 								</label>
-								{/* <div className="invalid-feedback">
-									{errors.image_url?.message}
-								</div> */}
 							</div>
 							<button
 								type="submit"

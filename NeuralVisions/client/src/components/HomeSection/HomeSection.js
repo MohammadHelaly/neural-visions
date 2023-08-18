@@ -14,13 +14,13 @@ const HomeSection = () => {
 				<p className="link-line">
 					<Icon
 						link={true}
-						to="https://github.com/MohammadHelaly"
+						to="https://github.com/MohammadHelaly/Visual-Question-Answering"
 						src={githubIcon}
 						alt="GitHub"
 					/>
 					<Icon
 						link={true}
-						to="https://www.kaggle.com"
+						to="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering-6870-6750-6952"
 						src={kaggleIcon}
 						alt="LinkedIn"
 					/>
