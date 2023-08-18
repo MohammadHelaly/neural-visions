@@ -13,14 +13,12 @@ path_model_encoder_answer_type = os.path.join(path_current_directory, './saved/m
 path_model = os.path.join(path_current_directory, './saved/VisualQnA.pth')
 path_image_user = os.path.join(path_current_directory, './images/image_user.jpg')
 
-print("Loading model encoders...")
 with open(path_model_encoder_answer, 'rb') as f:
     model_encoder_answer = pickle.load(f)
 
 with open(path_model_encoder_answer_type, 'rb') as f:
     model_encoder_answer_type = pickle.load(f)
 
-print("Loading model...")
 model = LinearNet(num_classes=5410, device = torch.device("cpu"), model = "ViT-L/14@336px").to(torch.device("cpu"))
 model.load_model(path_model)
 
@@ -54,14 +52,18 @@ def predict():
         else:
             return jsonify({'error':'image not provided'})
 
-        #After debugging, uncomment try-except and indent prediction snippet.
-        #try:
-        predicted_answer, predicted_answer_type, answerability = model.test_model(image_path = path_image_user, question = question_user)
-        answer = model_encoder_answer.inverse_transform(predicted_answer.cpu().detach().numpy())
-        answer_type = model_encoder_answer_type.inverse_transform(predicted_answer_type.cpu().detach().numpy())
-        return jsonify({'answer': answer[0][0], 'answer_type': answer_type[0][0], 'answerability': answerability.item()})
-        #except:
-        #    return jsonify({'error':'error during prediction'}) 
+        try:
+            predicted_answer, predicted_answer_type, answerability = model.test_model(image_path = path_image_user, question = question_user)
+            answer = model_encoder_answer.inverse_transform(predicted_answer.cpu().detach().numpy())
+            answer_type = model_encoder_answer_type.inverse_transform(predicted_answer_type.cpu().detach().numpy())
+        
+            response = jsonify({'answer': answer[0][0], 'answer_type': answer_type[0][0], 'answerability': answerability.item()})
+            response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+            response.headers.add('Access-Control-Allow-Methods', 'POST')
+            return response
+        except:
+            return jsonify({'error':'error during prediction'}) 
 
 if __name__ == '__main__':
     app.run(debug=True)

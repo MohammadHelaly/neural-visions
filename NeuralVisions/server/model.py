@@ -249,19 +249,16 @@ class LinearNet(nn.Module):
     
     def plot_train_stats(self):
     
-        #plotting training losses and validation losses
         plt.plot(self.loss_train, label = "Training Loss")
         plt.plot(self.loss_val, label = "Validation Loss")
         plt.legend()
         plt.show()
 
-        #plotting vizwiz training and validation accuracy
         plt.plot(self.acc_vizwiz_train, label = "VizWiz Training Accuracy")
         plt.plot(self.acc_vizwiz_val, label = "VizWiz Validation Accuracy")
         plt.legend()
         plt.show()
 
-        #plotting training and validation answerability
         plt.plot(self.ans_train, label = "Training Answerability")
         plt.plot(self.ans_val, label = "Validation Answerability")
         plt.legend()
@@ -273,7 +270,7 @@ class LinearNet(nn.Module):
 
     def load_model(self, path):
         
-        self.load_state_dict(torch.load(path))
+        self.load_state_dict(torch.load(path,map_location=torch.device('cpu')))
         self.eval()
         return self    
 

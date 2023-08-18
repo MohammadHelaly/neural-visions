@@ -1,5 +1,5 @@
 import React from "react";
-import slide1 from "../../assets/images/giphy33.mp4";
+import slide1 from "../../assets/images/giphy333.mp4";
 import slide2 from "../../assets/images/ezgif-5-669cbea40d.mp4";
 import slide3 from "../../assets/images/ezgif-5-f8dec2f3e9.mp4";
 import styles from "./BackgroundCarousel.module.css";

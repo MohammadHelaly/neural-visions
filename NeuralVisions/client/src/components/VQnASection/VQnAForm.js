@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
@@ -45,19 +45,46 @@ const VQnAForm = () => {
 		}
 		console.log(data);
 		console.log(formData);
+		setAnswer("Loading...");
+		setAnswerType("Loading...");
+		setAnswerability("Loading...");
 
 		axios
 			.post("http://localhost:5000/predict", formData)
 			.then((res) => {
 				console.log(res);
-				setAnswer(res.data.answer);
-				setAnswerType(res.data.answer_type);
-				setAnswerability(
-					(res.data.answerability * 100).toFixed(0) + "%"
-				);
+
+				const originalAnswer = res.data.answer;
+				const originalAnswerType = res.data.answer_type;
+				const originalAnswerability = res.data.answerability;
+
+				const modifiedAnswer = originalAnswer.endsWith(".")
+					? originalAnswer
+					: originalAnswer + ".";
+				const modifiedAnswerType = originalAnswerType.endsWith(".")
+					? originalAnswerType
+					: originalAnswerType + ".";
+				const modifiedAnswerability =
+					((1 - originalAnswerability) * 100).toFixed(0) + "%";
+
+				const capitalizedAnswer =
+					modifiedAnswer.charAt(0).toUpperCase() +
+					modifiedAnswer.slice(1);
+				const capitalizedAnswerType =
+					modifiedAnswerType.charAt(0).toUpperCase() +
+					modifiedAnswerType.slice(1);
+
+				setAnswer(capitalizedAnswer);
+				setAnswerType(capitalizedAnswerType);
+				// setAnswer(res.data.answer);
+				// setAnswerType(res.data.answer_type);
+				setAnswerability(modifiedAnswerability);
 			})
 			.catch((err) => {
 				console.error("Error sending data:", err);
+				setAnswer("Something went wrong...");
+				setAnswerType("--");
+				setAnswerability("--");
 			});
 	};
 
