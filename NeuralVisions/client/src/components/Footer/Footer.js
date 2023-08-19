@@ -43,9 +43,7 @@ const Footer = () => {
 					/>
 				</p>
 				<hr />
-				<p className={styles["copyright"]}>
-					&copy; {currentYear} Mohammad Helaly
-				</p>
+				<p className={styles["copyright"]}>&copy; {currentYear}</p>
 			</div>
 		</footer>
 	);

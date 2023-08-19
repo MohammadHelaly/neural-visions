@@ -7,7 +7,7 @@ import AboutSection from "./components/AboutSection/AboutSection";
 import ContactSection from "./components/ContactSection/ContactSection";
 import Footer from "./components/Footer/Footer";
 
-function App() {
+const App = () => {
 	return (
 		<>
 			<BackgroundCarousel />
@@ -19,6 +19,6 @@ function App() {
 			<Footer />
 		</>
 	);
-}
+};
 
 export default App;

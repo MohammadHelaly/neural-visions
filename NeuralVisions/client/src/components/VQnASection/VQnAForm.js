@@ -1,29 +1,35 @@
 import { useState } from "react";
-import { set, useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
 import useAnimate from "../../hooks/use-animate";
+import styles from "./VQnAForm.module.css";
 
-const schema = z
-	.object({
-		question: z.string().nonempty(),
-		image_url: z.string().optional(),
-		image: z.any().optional(),
-	})
-	.refine(
-		(data) => {
-			return data.image || data.image_url;
-		},
-		{ message: "Please upload an image or provide an image URL." }
-	);
+const schema = z.object({
+	question: z.string().nonempty(),
+	image_url: z.string().url().optional(),
+	image: z
+		.any()
+		.optional()
+		.refine((data) => {
+			if (data && data[0] && data[0].type) {
+				return data[0].type.startsWith("image/");
+			}
+			return true;
+		}),
+});
 
 const VQnAForm = () => {
-	const [answer, setAnswer] = useState("It's Sunny.");
-	const [answerType, setAnswerType] = useState("Other.");
-	const [answerability, setAnswerability] = useState("86%");
-	const formRef1 = useAnimate("animate-form", false);
-	const formRef2 = useAnimate("animate-form", false);
+	const [answer, setAnswer] = useState("--");
+	const [answerType, setAnswerType] = useState("--");
+	const [answerability, setAnswerability] = useState("--");
+	const formRef1 = useAnimate(styles["animate"], false);
+	const formRef2 = useAnimate(styles["animate"], false);
+	const questionRef = useAnimate(styles["animate-field"], false);
+	const imageRef = useAnimate(styles["animate-field"], false);
+	const imageUrlRef = useAnimate(styles["animate-field"], false);
+	const resultsRef = useAnimate(styles["animate"], false);
 
 	const {
 		register,
@@ -31,7 +37,7 @@ const VQnAForm = () => {
 		formState: { errors },
 		watch,
 	} = useForm({
-		mode: "onSubmit",
+		mode: "onTouched",
 		resolver: zodResolver(schema),
 	});
 
@@ -83,61 +89,58 @@ const VQnAForm = () => {
 			});
 	};
 
-	const url = watch("image_url");
-	const image = watch("image");
-	console.log(url);
-	console.log(image);
-
 	return (
-		<div className="vqna">
-			<div ref={formRef1} className="vqna-form container mt-5">
-				<div className="card">
+		<div className={styles["vqna"]}>
+			<div
+				ref={formRef1}
+				className={`${styles["vqna-form"]} container mt-5`}>
+				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body">
 						<h1 className="card-title display-6">Ask a Question</h1>
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<div className="form-floating mb-4">
+							<div
+								ref={questionRef}
+								className={`form-floating mb-4 ${styles["form-field"]}`}>
 								<input
 									type="text"
-									className={`form-control custom-input ${
-										errors.question ? "is-invalid" : ""
-									}`}
+									className={`form-control ${
+										styles["custom-input"]
+									} ${errors.question ? "is-invalid" : ""}`}
 									{...register("question")}
 								/>
 								<label
 									htmlFor="question"
-									className={`label ${
-										errors.question ? "invalid-label" : ""
+									className={`${styles["label"]} ${
+										errors.question
+											? styles["invalid-label"]
+											: ""
 									}`}>
 									Question:
 								</label>
 							</div>
-							<div className="form-floating mb-4">
+							<div
+								ref={imageRef}
+								className={`form-floating mb-4 ${styles["form-field"]}`}>
 								<input
 									type="file"
-									className={`form-control custom-input ${
-										errors.image ? "is-invalid" : ""
-									}`}
+									className={`form-control ${
+										styles["custom-input"]
+									} ${errors.image ? "is-invalid" : ""}`}
 									{...register("image", {
 										disabled:
 											watch("image_url") !== undefined &&
 											watch("image_url") !== "",
 									})}
 								/>
-								<label
-									htmlFor="image"
-									className={`label ${
-										errors.image ? "invalid-label" : ""
-									}`}>
-									{" "}
-									Upload Image:
-								</label>
 							</div>
-							<div className="form-floating mb-4">
+							<div
+								ref={imageUrlRef}
+								className={`form-floating mb-4 ${styles["form-field"]}`}>
 								<input
 									type="text"
-									className={`form-control custom-input ${
-										errors.image_url ? "is-invalid" : ""
-									}`}
+									className={`form-control ${
+										styles["custom-input"]
+									} ${errors.image_url ? "is-invalid" : ""}`}
 									{...register("image_url", {
 										disabled:
 											watch("image") !== undefined &&
@@ -146,32 +149,38 @@ const VQnAForm = () => {
 								/>
 								<label
 									htmlFor="image_url"
-									className={`label ${
-										errors.image_url ? "invalid-label" : ""
+									className={`${styles["label"]} ${
+										errors.image_url
+											? styles["invalid-label"]
+											: ""
 									}`}>
 									Image URL:
 								</label>
 							</div>
 							<button
 								type="submit"
-								className="btn btn-dark form-button">
+								className={`btn btn-dark ${styles["form-button"]}`}>
 								Submit
 							</button>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div ref={formRef2} className="vqna-form container mt-5">
-				<div className="card">
+			<div
+				ref={formRef2}
+				className={`${styles["vqna-form"]} container mt-5`}>
+				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body text-center">
-						<p className="lead">Answer:</p>
-						<h2 className="display-6">{answer}</h2>
-						<br />
-						<p className="lead">Answer Type:</p>
-						<h2 className="display-6">{answerType}</h2>
-						<br />
-						<p className="lead">Answerability:</p>
-						<h3 className="display-6">{answerability}</h3>
+						<div ref={resultsRef} className={styles["results"]}>
+							<p className="lead">Answer:</p>
+							<h2 className="display-6">{answer}</h2>
+							<br />
+							<p className="lead">Answer Type:</p>
+							<h2 className="display-6">{answerType}</h2>
+							<br />
+							<p className="lead">Answerability:</p>
+							<h3 className="display-6">{answerability}</h3>
+						</div>
 					</div>
 				</div>
 			</div>

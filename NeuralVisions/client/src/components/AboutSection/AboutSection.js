@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
 import SectionHeader from "../Miscellaneous/SectionHeader";
-import styles from "../VQnASection/VQnASection.module.css";
+import styles from "./AboutSection.module.css";
 import linkArrow from "../../assets/icons/box-arrow-up-right.svg";
 import useAnimate from "../../hooks/use-animate";
 
 const AboutSection = () => {
-	const contentRef = useAnimate("animate", false);
-	const linksRef = useAnimate("animate", false);
+	const contentRef = useAnimate(styles["animate"], false);
+	const linksRef = useAnimate(styles["animate"], false);
 	return (
 		<section id="about">
 			<div className="custom-container">
@@ -16,8 +15,10 @@ const AboutSection = () => {
 						titleText="About VQnA"
 						subtitleText="Lorem ipsum dolor sit amet sangiune"
 					/>
-					<div className="text-light about-container">
-						<div ref={contentRef} className="about-content">
+					<div className={`text-light ${styles["about-container"]}`}>
+						<div
+							ref={contentRef}
+							className={styles["about-content"]}>
 							<p className="lead">
 								Lorem ipsum dolor sit amet, consectetur
 								adipiscing elit. Proin euismod libero non libero
@@ -105,16 +106,22 @@ const AboutSection = () => {
 						<hr />
 						<div
 							ref={linksRef}
-							className="research-links-container">
-							<a className="" href="">
+							className={styles["research-links-container"]}>
+							<a className="lead" target="_blank" href="">
 								Read our paper
 								<img className="link-arrow" src={linkArrow} />
 							</a>
-							<a className="" href="">
+							<a
+								className="lead"
+								target="_blank"
+								href="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering-6870-6750-6952">
 								View our code
 								<img className="link-arrow" src={linkArrow} />
 							</a>
-							<a className="" href="">
+							<a
+								className="lead"
+								target="_blank"
+								href="https://www.researchgate.net/publication/361274338_Less_Is_More_Linear_Layers_on_CLIP_Features_as_Powerful_VizWiz_Model">
 								Read "Less is More"
 								<img className="link-arrow" src={linkArrow} />
 							</a>
@@ -126,8 +133,11 @@ const AboutSection = () => {
 								Read about VizWiz VQA
 								<img className="link-arrow" src={linkArrow} />
 							</a> */}
-							<a className="" href="">
-								View original code
+							<a
+								className="lead"
+								target="_blank"
+								href="https://huggingface.co/spaces/CVPR/VizWiz-CLIP-VQA/tree/main">
+								View "Less is More" code
 								<img className="link-arrow" src={linkArrow} />
 							</a>
 						</div>

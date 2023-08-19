@@ -1,0 +1,29 @@
+.about-content {
+	opacity: 0;
+	transition: all 4s ease;
+}
+
+.about-container {
+	position: relative;
+	z-index: 1;
+	margin: 0 10% 0 10%;
+	overflow-x: hidden;
+}
+
+.research-links-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(1, 1fr);
+	opacity: 0;
+	transition: all 2s ease;
+}
+
+.research-links-container a {
+	color: inherit;
+	font-size: medium !important;
+	text-decoration: none;
+}
+
+.animate {
+	opacity: 1 !important;
+}

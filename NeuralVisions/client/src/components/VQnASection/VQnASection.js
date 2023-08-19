@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
 import SectionHeader from "../Miscellaneous/SectionHeader";
 import styles from "./VQnASection.module.css";
-import linkArrow from "../../assets/icons/box-arrow-up-right.svg";
 import VQnAForm from "./VQnAForm";
 import Slider from "../Miscellaneous/Slider";
 import useAnimate from "../../hooks/use-animate";
 
-const VQnA = () => {
-	const introRef = useAnimate(styles["animate-intro"], false);
+const VQnASection = () => {
+	const introRef = useAnimate(styles["animate"], false);
 
 	return (
 		<section id="vqna">
@@ -46,4 +44,4 @@ const VQnA = () => {
 	);
 };
 
-export default VQnA;
+export default VQnASection;
