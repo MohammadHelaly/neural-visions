@@ -123,6 +123,7 @@ const VQnAForm = () => {
 								className={`form-floating mb-4 ${styles["form-field"]}`}>
 								<input
 									type="file"
+									accept="image/*"
 									className={`form-control ${
 										styles["custom-input"]
 									} ${errors.image ? "is-invalid" : ""}`}
