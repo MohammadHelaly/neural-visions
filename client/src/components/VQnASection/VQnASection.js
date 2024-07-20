@@ -21,13 +21,12 @@ const VQnASection = () => {
 							ref={introRef}
 							className={`${styles["vqna-intro"]}`}>
 							<p className="lead">
-								Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. Proin euismod libero non libero
-								euismod, in feugiat purus lacinia. In hac
-								habitasse platea dictumst. Suspendisse potenti.
-								Aenean commodo, libero et tristique suscipit,
-								neque odio vulputate est, nec malesuada libero
-								ante id purus.
+								Try out our VQnA system to get answers to your
+								questions. See our deep learning model in action
+								for yourself and witness its accuracy and
+								efficiency firsthand. Experience the power of
+								our cutting-edge neural network model and
+								enhance your understanding of its capabilities.
 							</p>
 						</div>
 						<hr />
