@@ -29,7 +29,7 @@
 
 .slider::before {
 	content: "";
-	background-color: white;
+	background-color: #f8f9fa;
 	width: 0;
 	transition: all 1s ease;
 	z-index: 2;

@@ -26,7 +26,7 @@ const ContactInformation = (props) => {
 				<div className={`${styles["social-links"]}`}>
 					<Icon link={true} to={gmailLink}>
 						<Gmail
-							fill="white"
+							fill="#f8f9fa"
 							className={`${styles["contact-icon"]} ${styles["contact-gm-icon"]}`}
 						/>
 					</Icon>

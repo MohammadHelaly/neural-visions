@@ -13,7 +13,7 @@
 	transform: translateX(-50%);
 	transition: transform 1s ease, opacity 1s ease, background-color 0.4s ease,
 		border 0.4s ease;
-	border: 2px solid #e9e6e6;
+	border: 2px solid #f8f9fa;
 	overflow: hidden;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .contact-information:hover {
-	background-color: rgb(255, 255, 255);
+	background-color: #f8f9fa;
 	border: 2px solid #212529;
 }
 

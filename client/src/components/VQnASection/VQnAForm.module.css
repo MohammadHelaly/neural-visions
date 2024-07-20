@@ -54,15 +54,15 @@
 	border-bottom: 1px solid;
 	outline: none !important;
 	box-shadow: none !important;
-	background-color: white !important;
+	background-color: #f8f9fa !important;
 }
 
 .custom-input:disabled {
 	/* width: 0;
 	opacity: 0; */
-	border-color: #969696;
-	background-color: white;
-	color: white;
+	border-color: rgba(124, 124, 124, 0.486);
+	background-color: #f8f9fa;
+	color: #f8f9fa;
 }
 
 .custom-input[type="file"] {
@@ -87,7 +87,7 @@
 }
 
 .form-button:hover {
-	background-color: white !important;
+	background-color: #f8f9fa !important;
 	color: #212529;
 }
 
