@@ -1,10 +1,20 @@
-/* MICSELLANEOUS */
 .custom-container {
-	padding: 1% 0 10% 0;
+	padding: 1% 0 5% 0;
 	background-color: #212529;
+	position: relative;
 	width: 100% !important;
+	z-index: 1;
 	margin-bottom: 10%;
+	margin-top: 10%;
 	overflow-x: hidden;
+}
+
+/* .custom-container:first-child {
+	margin-top: 0;
+} */
+
+.light-background {
+	background-color: #f8f9fa !important;
 }
 
 .carousel-item video {
@@ -14,97 +24,8 @@
 	object-fit: cover;
 }
 
-.link-line {
-	margin-left: 7px;
-}
-
-.bottom-lead {
-	margin-bottom: -1.4vh;
-	margin-left: 7px;
-}
-
-.line {
-	line-height: 1.4rem;
-	font-size: 1.1rem !important;
-}
-
-/* ICONS */
-.link-arrow {
-	position: relative;
-	margin-left: 5px;
-	bottom: 2px;
-	height: 17.5px;
-	width: 17.5px;
-	filter: invert(1);
-}
-
-.white-icon {
-	filter: brightness(100%);
-	filter: invert(100%);
-	height: 30px;
-	width: 30px;
-	transition: transform 0.5s ease;
-}
-
-.white-icon:active,
-.white-icon:hover {
-	opacity: 0.45;
-	transform: translateY(-5px);
-}
-
-.dark-icon {
-	opacity: 0.85;
-	height: 30px;
-	width: 30px;
-	transition: transform 0.5s ease;
-}
-
-.dark-icon:active,
-.dark-icon:hover {
-	opacity: 0.45;
-	transform: translateY(-5px);
-}
-
-.icon-link {
-	margin-right: 17.5px;
-	margin-top: 25px;
-}
-
-.gm-link {
-	position: relative;
-	top: 10px;
-	margin-right: 10px;
-}
-
-.gm-icon {
-	height: 50px;
-	width: 50px;
-}
-
-.white-gm-icon {
-	margin-top: -20px;
-	height: 50px;
-	width: 50px;
-}
-
-.vw-icon {
-	height: 30px;
-	width: 35px;
-	margin-left: -2px;
-}
-
-.white-openai-icon {
-	border-radius: 3px;
-}
-
-.big-logo {
-	width: 30%;
-}
-
-/* MEDIA QUERIES */
-
-@media (min-width: 1369px) {
-	.bottom-lead {
-		margin-bottom: 2%;
+@media (max-width: 990px) {
+	.custom-container {
+		padding: 1% 0 10% 0 !important;
 	}
 }

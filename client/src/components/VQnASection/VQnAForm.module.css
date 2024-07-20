@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: 1fr;
+	gap: 20px;
 	margin-bottom: 25px;
 }
 
@@ -19,8 +20,8 @@
 .form-card {
 	border-radius: 0 !important;
 	border: 0;
-	border-bottom: 5px solid #969696 !important;
-	height: 97%;
+	border-bottom: 5px solid rgba(124, 124, 124, 0.486) !important;
+	height: 100%;
 }
 
 .form-field {
@@ -110,5 +111,6 @@
 		grid-template-rows: repeat(2, 1fr);
 		grid-template-columns: 1fr;
 		margin-bottom: 25px;
+		gap: 10px;
 	}
 }

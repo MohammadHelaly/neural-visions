@@ -56,7 +56,7 @@ const VQnAForm = () => {
 		setAnswerability("Loading...");
 
 		axios
-			.post("http://localhost:5000/predict", formData)
+			.post(process.env.REACT_APP_BACKEND_BASE_URL + "/predict", formData)
 			.then((res) => {
 				const originalAnswer = res.data.answer;
 				const originalAnswerType = res.data.answer_type;
@@ -91,12 +91,12 @@ const VQnAForm = () => {
 
 	return (
 		<div className={styles["vqna"]}>
-			<div
-				ref={formRef1}
-				className={`${styles["vqna-form"]} container mt-5`}>
+			<div ref={formRef1} className={`${styles["vqna-form"]} mt-5`}>
 				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body">
-						<h1 className="card-title display-6">Ask a Question</h1>
+						<h1 className="card-title text-dark display-6">
+							Ask a Question
+						</h1>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div
 								ref={questionRef}
@@ -167,20 +167,22 @@ const VQnAForm = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				ref={formRef2}
-				className={`${styles["vqna-form"]} container mt-5`}>
+			<div ref={formRef2} className={`${styles["vqna-form"]} mt-5`}>
 				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body text-center">
 						<div ref={resultsRef} className={styles["results"]}>
-							<p className="lead">Answer:</p>
-							<h2 className="display-6">{answer}</h2>
+							<p className="lead text-dark">Answer:</p>
+							<h2 className="display-6 text-dark">{answer}</h2>
 							<br />
-							<p className="lead">Answer Type:</p>
-							<h2 className="display-6">{answerType}</h2>
+							<p className="lead text-dark">Answer Type:</p>
+							<h2 className="display-6 text-dark">
+								{answerType}
+							</h2>
 							<br />
-							<p className="lead">Answerability:</p>
-							<h3 className="display-6">{answerability}</h3>
+							<p className="lead text-dark">Answerability:</p>
+							<h3 className="display-6 text-dark">
+								{answerability}
+							</h3>
 						</div>
 					</div>
 				</div>

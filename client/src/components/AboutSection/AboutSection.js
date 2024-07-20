@@ -1,6 +1,6 @@
 import SectionHeader from "../Miscellaneous/SectionHeader";
 import styles from "./AboutSection.module.css";
-import linkArrow from "../../assets/icons/box-arrow-up-right.svg";
+import { ReactComponent as LinkArrow } from "../../assets/icons/box-arrow-up-right.svg";
 import useAnimate from "../../hooks/use-animate";
 
 const AboutSection = () => {
@@ -13,7 +13,7 @@ const AboutSection = () => {
 					<SectionHeader
 						textTheme="light"
 						titleText="About VQnA"
-						subtitleText="Lorem ipsum dolor sit amet sangiune"
+						subtitleText="Read about visual question answering."
 					/>
 					<div className={`text-light ${styles["about-container"]}`}>
 						<div
@@ -107,38 +107,41 @@ const AboutSection = () => {
 						<div
 							ref={linksRef}
 							className={styles["research-links-container"]}>
-							<a className="lead" target="_blank" href="">
+							<a
+								target="_blank"
+								href="/assets/Pattern Recognition - Visual Question Answering.pdf">
 								Read our paper
-								<img className="link-arrow" src={linkArrow} />
+								<LinkArrow className={styles["link-arrow"]} />
 							</a>
 							<a
-								className="lead"
 								target="_blank"
 								href="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering-6870-6750-6952">
 								View our code
-								<img className="link-arrow" src={linkArrow} />
+								<LinkArrow className={styles["link-arrow"]} />
 							</a>
 							<a
-								className="lead"
+								target="_blank"
+								href="https://openai.com/index/clip/">
+								Read about CLIP
+								<LinkArrow className={styles["link-arrow"]} />
+							</a>
+							<a
 								target="_blank"
 								href="https://www.researchgate.net/publication/361274338_Less_Is_More_Linear_Layers_on_CLIP_Features_as_Powerful_VizWiz_Model">
 								Read "Less is More"
-								<img className="link-arrow" src={linkArrow} />
+								<LinkArrow className={styles["link-arrow"]} />
 							</a>
-							{/* <a className="lead" href="">
-								Read about CLIP
-								<img className="link-arrow" src={linkArrow} />
-							</a> */}
-							{/* <a className="lead" href="">
-								Read about VizWiz VQA
-								<img className="link-arrow" src={linkArrow} />
-							</a> */}
 							<a
-								className="lead"
 								target="_blank"
 								href="https://huggingface.co/spaces/CVPR/VizWiz-CLIP-VQA/tree/main">
-								View "Less is More" code
-								<img className="link-arrow" src={linkArrow} />
+								View the code for "Less is More"
+								<LinkArrow className={styles["link-arrow"]} />
+							</a>
+							<a
+								target="_blank"
+								href="https://vizwiz.org/tasks-and-datasets/vqa/">
+								Read about VizWiz VQA
+								<LinkArrow className={styles["link-arrow"]} />
 							</a>
 						</div>
 					</div>

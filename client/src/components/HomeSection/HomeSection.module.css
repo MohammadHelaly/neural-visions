@@ -48,7 +48,7 @@
 
 @media (max-width: 768px) {
 	.overlay-container {
-		top: 25%;
+		top: 37%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		padding: 280px 35px 230px;
