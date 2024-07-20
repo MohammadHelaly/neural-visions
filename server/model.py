@@ -5,7 +5,6 @@ import clip
 import matplotlib.pyplot as plt
 from PIL import Image
 from sklearn.metrics import average_precision_score
-import requests
 
 class LinearNet(nn.Module):
     
