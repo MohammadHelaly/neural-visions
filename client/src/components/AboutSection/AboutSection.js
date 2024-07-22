@@ -115,7 +115,7 @@ const AboutSection = () => {
 							</a>
 							<a
 								target="_blank"
-								href="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering-6870-6750-6952">
+								href="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering">
 								View our code
 								<LinkArrow className={styles["link-arrow"]} />
 							</a>
