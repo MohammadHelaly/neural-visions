@@ -9,9 +9,12 @@ from model import LinearNet
 app = Flask(__name__)
 
 path_current_directory = os.path.dirname(os.path.realpath(__file__))
+path_images_directory = os.path.join(path_current_directory, './images')
 path_model_encoder_answer = os.path.join(path_current_directory, './saved/encoders/model_encoder_answer.pkl')
 path_model_encoder_answer_type = os.path.join(path_current_directory, './saved/encoders/model_encoder_answer_type.pkl')
 path_model = os.path.join(path_current_directory, './saved/models/VisualQnA.pth')
+
+os.makedirs(path_images_directory, exist_ok=True)
 
 with open(path_model_encoder_answer, 'rb') as f:
     model_encoder_answer = pickle.load(f)
@@ -31,7 +34,7 @@ def predict():
     image_url_user = request.form.get('image_url')
     question_user = request.form.get('question')
     unique_image_filename = str(uuid.uuid4())
-    path_image_user = os.path.join(path_current_directory, './images/'+ unique_image_filename +'.jpg')
+    path_image_user = os.path.join(path_images_directory, unique_image_filename +'.jpg')
 
     if question_user is None or question_user == "":
         return jsonify({'error':'question not provided'})
