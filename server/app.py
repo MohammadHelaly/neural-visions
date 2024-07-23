@@ -30,6 +30,16 @@ def allowed_format(image_name):
 
 app = Flask(__name__, static_folder = path_build_directory, static_url_path = '/')
 
+@app.after_request
+def apply_cors(response):
+    origin = request.headers.get('Origin')
+    if origin:
+        response.headers['Access-Control-Allow-Origin'] = origin
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    
+    return response
+
 @app.route('/', methods = ['GET'])
 def home():
     return send_from_directory(path_build_directory, 'index.html')  
@@ -67,11 +77,8 @@ def predict():
         os.remove(path_image_user) 
 
         response = jsonify({'answer': answer[0][0], 'answer_type': answer_type[0][0], 'answerability': answerability.item()})
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods', 'POST')
-        
         return response
+    
     except:
         return jsonify({'error': 'error during prediction'}) 
 
