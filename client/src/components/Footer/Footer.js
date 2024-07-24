@@ -34,7 +34,7 @@ const Footer = () => {
 							.
 						</p>
 						<p className={styles["copyright"]}>
-							Deep learning model encorporated with the{" "}
+							Deep learning model encorporates the{" "}
 							<a
 								href="https://openai.com/research/clip/"
 								target="_blank"

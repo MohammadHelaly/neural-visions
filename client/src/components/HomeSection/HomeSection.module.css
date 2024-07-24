@@ -1,6 +1,6 @@
 .parent-container {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	min-height: 93vh;
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0);
@@ -10,7 +10,7 @@
 	position: absolute;
 	top: 55%;
 	/* left: 25%; */
-	left: 26%;
+	left: 31%;
 	transform: translate(-50%, -50%);
 	background-color: rgba(0, 0, 0, 0);
 	padding: 3.5vw;
@@ -64,19 +64,19 @@
 
 @media (min-width: 1800px) and (max-width: 2100px) {
 	.overlay-container {
-		left: 28.75%;
+		left: 31.75%;
 	}
 }
 
 @media (min-width: 2101px) and (max-width: 2699px) {
 	.overlay-container {
-		left: 33.75%;
+		left: 36.5%;
 	}
 }
 
 @media (min-width: 2700px) and (max-width: 5000px) {
 	.overlay-container {
-		left: 39%;
+		left: 41%;
 	}
 }
 
