@@ -24,7 +24,7 @@ const Links = (props) => {
 			</Icon>
 			<Icon
 				link={true}
-				to="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering-6870-6750-6952">
+				to="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering">
 				<Kaggle
 					height="30px"
 					width="30px"
