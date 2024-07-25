@@ -1,4 +1,5 @@
 import "./App.css";
+import Notifications from "./components/Miscellaneous/Notifications";
 import Background from "./components/Background/Background";
 import NavBar from "./components/NavBar/NavBar";
 import HomeSection from "./components/HomeSection/HomeSection";
@@ -10,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 const App = () => {
 	return (
 		<>
+			<Notifications />
 			<Background />
 			<NavBar />
 			<HomeSection />
