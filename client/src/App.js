@@ -1,5 +1,5 @@
 import "./App.css";
-import BackgroundCarousel from "./components/BackgroundCarousel/BackgroundCarousel";
+import Background from "./components/Background/Background";
 import NavBar from "./components/NavBar/NavBar";
 import HomeSection from "./components/HomeSection/HomeSection";
 import VQnASection from "./components/VQnASection/VQnASection";
@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 const App = () => {
 	return (
 		<>
-			<BackgroundCarousel />
+			<Background />
 			<NavBar />
 			<HomeSection />
 			<VQnASection />
