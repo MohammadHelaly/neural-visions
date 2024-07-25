@@ -1,8 +1,8 @@
 import styles from "./ConstactSection.module.css";
 import SectionHeader from "../Miscellaneous/SectionHeader";
-import ContactInformation from "./ContactInformation";
+// import ContactInformation from "./ContactInformation";
 import useAnimate from "../../hooks/use-animate";
-import contactData from "../../assets/data/contactData";
+// import contactData from "../../assets/data/contactData";
 
 const ContactSection = () => {
 	const paragraphRef = useAnimate(styles["animate"], false);
@@ -33,7 +33,10 @@ const ContactSection = () => {
 							</p>
 						</div>
 						<hr />
-						<div className={`${styles["contacts"]}`}>
+						<h2 className="text-light text-center display-6 pt-4">
+							Coming Soon...
+						</h2>
+						{/* <div className={`${styles["contacts"]}`}>
 							{contactData.map((contact, index) => {
 								return (
 									<ContactInformation
@@ -46,7 +49,7 @@ const ContactSection = () => {
 									/>
 								);
 							})}
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
