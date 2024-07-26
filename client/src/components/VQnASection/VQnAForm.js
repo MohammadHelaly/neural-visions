@@ -90,8 +90,8 @@ const VQnAForm = () => {
 	};
 
 	return (
-		<div className={styles["vqna"]}>
-			<div ref={formRef1} className={`${styles["vqna-form"]} mt-5`}>
+		<div className={`${styles["vqna"]} mt-5`}>
+			<div ref={formRef1} className={styles["vqna-form"]}>
 				<div className={`card ${styles["form-card"]}`}>
 					<div className={`card-body ${styles["form-content"]}`}>
 						<h1 className="card-title text-dark display-6">
@@ -167,7 +167,7 @@ const VQnAForm = () => {
 					</div>
 				</div>
 			</div>
-			<div ref={formRef2} className={`${styles["vqna-form"]} mt-5`}>
+			<div ref={formRef2} className={styles["vqna-form"]}>
 				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body text-center">
 						<div ref={resultsRef} className={styles["results"]}>
