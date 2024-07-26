@@ -93,7 +93,7 @@ const VQnAForm = () => {
 		<div className={styles["vqna"]}>
 			<div ref={formRef1} className={`${styles["vqna-form"]} mt-5`}>
 				<div className={`card ${styles["form-card"]}`}>
-					<div className="card-body">
+					<div className={`card-body ${styles["form-content"]}`}>
 						<h1 className="card-title text-dark display-6">
 							Ask a Question
 						</h1>
@@ -171,18 +171,24 @@ const VQnAForm = () => {
 				<div className={`card ${styles["form-card"]}`}>
 					<div className="card-body text-center">
 						<div ref={resultsRef} className={styles["results"]}>
-							<p className="lead text-dark">Answer:</p>
-							<h2 className="display-6 text-dark">{answer}</h2>
-							<br />
-							<p className="lead text-dark">Answer Type:</p>
-							<h2 className="display-6 text-dark">
-								{answerType}
-							</h2>
-							<br />
-							<p className="lead text-dark">Answerability:</p>
-							<h3 className="display-6 text-dark">
-								{answerability}
-							</h3>
+							<div>
+								<p className="lead text-dark">Answer:</p>
+								<h2 className="display-6 text-dark">
+									{answer}
+								</h2>
+							</div>
+							<div>
+								<p className="lead text-dark">Answer Type:</p>
+								<h2 className="display-6 text-dark">
+									{answerType}
+								</h2>
+							</div>
+							<div>
+								<p className="lead text-dark">Answerability:</p>
+								<h2 className="display-6 text-dark">
+									{answerability}
+								</h2>
+							</div>
 						</div>
 					</div>
 				</div>

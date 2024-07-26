@@ -24,6 +24,12 @@
 	height: 100%;
 }
 
+.form-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .form-field {
 	opacity: 0;
 	width: 0;
@@ -98,6 +104,10 @@
 .results {
 	opacity: 0;
 	transition: all 2s ease-in;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .animate {
