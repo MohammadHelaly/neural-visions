@@ -7,7 +7,7 @@ import uuid
 from model import LinearNet
 
 path_current_directory = os.path.dirname(os.path.realpath(__file__))
-path_build_directory = os.path.join(path_current_directory, '../client/build')
+path_dist_directory = os.path.join(path_current_directory, '../client/dist')
 path_images_directory = os.path.join(path_current_directory, './images')
 path_model_encoder_answer = os.path.join(path_current_directory, './saved/encoders/model_encoder_answer.pkl')
 path_model_encoder_answer_type = os.path.join(path_current_directory, './saved/encoders/model_encoder_answer_type.pkl')
@@ -28,7 +28,7 @@ def allowed_format(image_name):
     allowed_extensions = {'png','jpg','jpeg'}
     return '.' in image_name and image_name.rsplit('.',1)[1].lower() in allowed_extensions
 
-app = Flask(__name__, static_folder = path_build_directory, static_url_path = '/')
+app = Flask(__name__, static_folder = path_dist_directory, static_url_path = '/')
 
 @app.after_request
 def apply_cors(response):
@@ -42,7 +42,7 @@ def apply_cors(response):
 
 @app.route('/', methods = ['GET'])
 def home():
-    return send_from_directory(path_build_directory, 'index.html')  
+    return send_from_directory(path_dist_directory, 'index.html')  
 
 @app.route('/predict', methods = ['POST'])
 def predict():
