@@ -3,7 +3,7 @@ const Background = () => {
     <div className="fixed top-0 -z-10 h-screen w-full overflow-hidden bg-muted">
       <video
         src="/assets/images/background-video.mp4"
-        className="min-h-screen w-full object-cover"
+        className="min-h-screen w-full object-cover brightness-[0.8]"
         autoPlay
         loop
         muted

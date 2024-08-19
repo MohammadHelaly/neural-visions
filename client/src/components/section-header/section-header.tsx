@@ -42,7 +42,7 @@ const viewport = {
 const SectionHeader = (props: Props) => {
   const { titleText, subtitleText, textTheme = "dark" } = props;
 
-  const textVariant = textTheme === "light" ? "text-white" : "text-black";
+  const textVariant = textTheme === "light" ? "text-white" : "text-dark";
 
   const titleClasses = `${textVariant} text-[calc(1.375rem_+_1.5vw)] leading-[1.2] xl:text-[2.5rem] font-poppins font-light text-start`;
 
