@@ -10,14 +10,14 @@ const NavLinks = () => {
 
     return (
       <li key={link}>
-        <span
+        <button
           onClick={handleClick}
           className="flex h-full cursor-pointer items-center px-2 py-1"
         >
           <p className="w-full text-center font-poppins text-base font-normal text-white">
             {link}
           </p>
-        </span>
+        </button>
       </li>
     );
   });
