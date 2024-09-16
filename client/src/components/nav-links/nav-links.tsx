@@ -9,10 +9,10 @@ const NavLinks = () => {
     };
 
     return (
-      <li key={link}>
+      <li key={link} className="w-full lg:w-auto">
         <button
           onClick={handleClick}
-          className="flex h-full cursor-pointer items-center px-2 py-1"
+          className="flex h-full w-full cursor-pointer items-center px-2 py-1"
         >
           <p className="w-full text-center font-poppins text-base font-normal text-white">
             {link}
