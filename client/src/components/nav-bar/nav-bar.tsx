@@ -23,8 +23,9 @@ const navChildVariants = {
 
 const transition = {
   type: "tween",
-  duration: 0.2,
-  staggerChildren: 0.1,
+  duration: 0.4,
+  delayChildren: 0.2,
+  staggerChildren: 0.2,
 };
 
 const viewport = {
@@ -65,25 +66,19 @@ const NavBar = () => {
             whileInView="animate"
             className="flex w-full items-center gap-2 lg:justify-end"
           >
-            <motion.nav
-              variants={navChildVariants}
-              transition={transition}
-              className="hidden lg:flex"
-            >
-              <ul className="flex">
+            <motion.nav variants={navChildVariants} transition={transition}>
+              <ul className="hidden lg:flex">
                 <NavLinks />
               </ul>
+              <button
+                className="flex h-10 w-14 items-center justify-center border border-muted bg-transparent px-3 shadow-none focus:outline-none lg:hidden"
+                type="button"
+                aria-label="Toggle navigation"
+                onClick={openDrawer}
+              >
+                <HamburgerMenu className="h-full w-full fill-muted brightness-200" />
+              </button>
             </motion.nav>
-            <motion.button
-              variants={navChildVariants}
-              transition={transition}
-              className="flex h-10 w-14 items-center justify-center border border-muted bg-transparent px-3 shadow-none focus:outline-none lg:hidden"
-              type="button"
-              aria-label="Toggle navigation"
-              onClick={openDrawer}
-            >
-              <HamburgerMenu className="h-full w-full fill-muted brightness-200" />
-            </motion.button>
           </motion.div>
         </Container>
         <NavDrawer

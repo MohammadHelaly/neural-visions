@@ -23,6 +23,7 @@ const childVariants = {
 const transition = {
   type: "tween",
   duration: 0.4,
+  delayChildren: 0.2,
   staggerChildren: 0.2,
 };
 
@@ -49,11 +50,11 @@ const HomeSection = () => {
               transition={transition}
               className="flex w-full flex-col items-center justify-center gap-4 md:gap-2 lg:items-start"
             >
-              <h1 className="font-poppins text-start text-[calc(1.625rem_+_4.5vw)] font-light leading-[1.2] text-white xl:text-[5rem]">
+              <h1 className="text-start font-poppins text-[calc(1.625rem_+_4.5vw)] font-light leading-[1.2] text-white xl:text-[5rem]">
                 NeuralVisions
               </h1>
               <div className="flex w-full flex-col items-center justify-center gap-4 lg:items-start">
-                <p className="font-poppins text-start text-xl font-light text-white">
+                <p className="text-start font-poppins text-xl font-light text-white">
                   VisualQnA
                 </p>
               </div>
