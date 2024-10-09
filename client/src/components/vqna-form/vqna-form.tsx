@@ -81,7 +81,7 @@ const cardTransition = {
   staggerChildren: 0.2,
 };
 
-const formTransition = {
+const buttonTransition = {
   type: "tween",
   duration: 0.4,
 };
@@ -219,7 +219,7 @@ const ContactForm = () => {
 
           <motion.button
             variants={buttonVariants}
-            transition={formTransition}
+            transition={buttonTransition}
             viewport={viewport}
             initial="initial"
             whileInView="animate"

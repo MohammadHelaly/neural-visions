@@ -4,7 +4,7 @@ import ContentPadding from "@/components/content-padding";
 import SectionHeader from "@/components/section-header";
 import { LinkArrow } from "@/assets/icons";
 
-const contentVariants = {
+const variants = {
   initial: {
     opacity: 0,
   },
@@ -28,7 +28,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="bg-dark mb-10 py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
+      className="mb-10 bg-dark py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
     >
       <Container>
         <div className="flex flex-col items-center justify-center gap-12">
@@ -40,12 +40,12 @@ const AboutSection = () => {
           <ContentPadding>
             <div className="flex w-full flex-col items-center justify-center gap-4">
               <motion.p
-                variants={contentVariants}
+                variants={variants}
                 transition={transition}
                 viewport={viewport}
                 initial="initial"
                 whileInView="animate"
-                className="font-poppins w-full text-start text-xl font-light text-white"
+                className="w-full text-start font-poppins text-xl font-light text-white"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
                 euismod libero non libero euismod, in feugiat purus lacinia. In
@@ -114,7 +114,7 @@ const AboutSection = () => {
               </motion.p>
               <hr className="h-px w-full border-none bg-muted" />
               <motion.div
-                variants={contentVariants}
+                variants={variants}
                 transition={transition}
                 viewport={viewport}
                 initial="initial"
@@ -124,7 +124,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="/assets/files/Pattern Recognition - Visual Question Answering.pdf"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   Read our paper
                   <LinkArrow className="size-4 min-w-4 fill-white" />
@@ -132,7 +132,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   View our code
                   <LinkArrow className="size-4 min-w-4 fill-white" />
@@ -140,7 +140,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="https://openai.com/index/clip/"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   Read about CLIP
                   <LinkArrow className="size-4 min-w-4 fill-white" />
@@ -148,7 +148,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="https://www.researchgate.net/publication/361274338_Less_Is_More_Linear_Layers_on_CLIP_Features_as_Powerful_VizWiz_Model"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   Read "Less is More"
                   <LinkArrow className="size-4 min-w-4 fill-white" />
@@ -156,7 +156,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="https://huggingface.co/spaces/CVPR/VizWiz-CLIP-VQA/tree/main"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   View the code for "Less is More"
                   <LinkArrow className="size-4 min-w-4 fill-white" />
@@ -164,7 +164,7 @@ const AboutSection = () => {
                 <a
                   target="_blank"
                   href="https://vizwiz.org/tasks-and-datasets/vqa/"
-                  className="font-poppins flex items-center justify-start gap-1 text-start text-base font-light text-white underline lg:justify-center lg:text-center"
+                  className="flex items-center justify-start gap-1 text-start font-poppins text-base font-light text-white underline lg:justify-center lg:text-center"
                 >
                   Read about VizWiz VQA
                   <LinkArrow className="size-4 min-w-4 fill-white" />

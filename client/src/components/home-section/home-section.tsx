@@ -2,16 +2,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/container";
 import Links from "@/components/links";
 
-const parentVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
-const childVariants = {
+const variants = {
   initial: {
     opacity: 0,
   },
@@ -38,7 +29,7 @@ const HomeSection = () => {
       <Container className="h-full">
         <div className="flex h-full w-full flex-col items-center justify-center">
           <motion.div
-            variants={parentVariants}
+            variants={variants}
             transition={transition}
             viewport={viewport}
             initial="initial"
@@ -46,7 +37,7 @@ const HomeSection = () => {
             className="flex h-full w-full flex-col items-center justify-center gap-4 md:gap-2 lg:items-start lg:px-9"
           >
             <motion.div
-              variants={childVariants}
+              variants={variants}
               transition={transition}
               className="flex w-full flex-col items-center justify-center gap-4 md:gap-2 lg:items-start"
             >
@@ -60,7 +51,7 @@ const HomeSection = () => {
               </div>
             </motion.div>
             <motion.div
-              variants={childVariants}
+              variants={variants}
               transition={transition}
               className="py-4"
             >

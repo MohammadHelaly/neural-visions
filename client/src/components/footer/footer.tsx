@@ -2,16 +2,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/container";
 import Links from "@/components/links";
 
-const parentVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
-const childVariants = {
+const variants = {
   initial: {
     opacity: 0,
   },
@@ -38,7 +29,7 @@ const Footer = () => {
     <footer id="footer" className="bg-dark py-12">
       <Container>
         <motion.div
-          variants={parentVariants}
+          variants={variants}
           transition={transition}
           viewport={viewport}
           initial="initial"
@@ -46,12 +37,12 @@ const Footer = () => {
           className="flex w-full flex-col items-center justify-center gap-4 lg:items-start"
         >
           <motion.div
-            variants={childVariants}
+            variants={variants}
             transition={transition}
             className="flex w-full flex-col items-center justify-center gap-4 lg:flex-row lg:items-end lg:justify-between lg:px-2"
           >
             <div className="flex flex-col items-center gap-1.5 lg:items-start">
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Background by{" "}
                 <a
                   href="https://objkt.com/@xponential"
@@ -63,7 +54,7 @@ const Footer = () => {
                 </a>
                 .
               </p>
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Neural network deep learning model developed with{" "}
                 <a
                   href="https://pytorch.org/"
@@ -75,7 +66,7 @@ const Footer = () => {
                 </a>
                 .
               </p>
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Deep learning model encorporates the{" "}
                 <a
                   href="https://openai.com/research/clip/"
@@ -87,7 +78,7 @@ const Footer = () => {
                 </a>
                 .
               </p>
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Model trained on the{" "}
                 <a
                   href="https://vizwiz.org/tasks-and-datasets/vqa/"
@@ -99,7 +90,7 @@ const Footer = () => {
                 </a>
                 .
               </p>
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Backend server developed with{" "}
                 <a
                   href="https://flask.palletsprojects.com/"
@@ -111,7 +102,7 @@ const Footer = () => {
                 </a>
                 .
               </p>
-              <p className="font-poppins text-center text-xs font-thin text-white lg:text-start">
+              <p className="text-center font-poppins text-xs font-thin text-white lg:text-start">
                 Developed with{" "}
                 <a
                   href="https://reactjs.org/"
@@ -128,9 +119,9 @@ const Footer = () => {
           </motion.div>
           <hr className="h-px w-full border-none !bg-muted" />
           <motion.p
-            variants={childVariants}
+            variants={variants}
             transition={transition}
-            className="font-poppins text-center text-xs font-thin text-white lg:px-2 lg:text-start"
+            className="text-center font-poppins text-xs font-thin text-white lg:px-2 lg:text-start"
           >
             &copy; {currentYear} Mohammad Helaly
           </motion.p>

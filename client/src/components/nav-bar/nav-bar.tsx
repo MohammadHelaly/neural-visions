@@ -5,14 +5,7 @@ import NavLinks from "@/components/nav-links";
 import NavDrawer from "@/components/nav-drawer";
 import { HamburgerMenu } from "@/assets/icons";
 
-const navParentVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: { opacity: 1 },
-};
-
-const navChildVariants = {
+const variants = {
   initial: {
     opacity: 0,
   },
@@ -59,14 +52,14 @@ const NavBar = () => {
       <div className="w-full py-2 lg:py-3">
         <Container>
           <motion.div
-            variants={navParentVariants}
+            variants={variants}
             transition={transition}
             viewport={viewport}
             initial="initial"
             whileInView="animate"
             className="flex w-full items-center gap-2 lg:justify-end"
           >
-            <motion.nav variants={navChildVariants} transition={transition}>
+            <motion.nav variants={variants} transition={transition}>
               <ul className="hidden lg:flex">
                 <NavLinks />
               </ul>

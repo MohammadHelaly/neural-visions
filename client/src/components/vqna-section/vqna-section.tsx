@@ -4,7 +4,7 @@ import SectionHeader from "@/components/section-header";
 import ContentPadding from "@/components/content-padding";
 import VqnaForm from "@/components/vqna-form";
 
-const contentVariants = {
+const variants = {
   initial: {
     opacity: 0,
     x: 40,
@@ -29,7 +29,7 @@ const VQnASection = () => {
   return (
     <section
       id="vqna"
-      className="bg-dark mb-10 overflow-x-hidden py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
+      className="mb-10 overflow-x-hidden bg-dark py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
     >
       <Container>
         <div className="flex flex-col items-center justify-center gap-12">
@@ -37,12 +37,12 @@ const VQnASection = () => {
           <ContentPadding>
             <div className="flex w-full flex-col items-center justify-center gap-4">
               <motion.p
-                variants={contentVariants}
+                variants={variants}
                 transition={transition}
                 viewport={viewport}
                 initial="initial"
                 whileInView="animate"
-                className="font-poppins w-full text-start text-xl font-light text-white"
+                className="w-full text-start font-poppins text-xl font-light text-white"
               >
                 Try out our VQnA system to get answers to your questions. See
                 our deep learning model in action for yourself and witness its

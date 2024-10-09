@@ -8,7 +8,7 @@ interface Props {
   background: string;
 }
 
-const drawerVariants = {
+const variants = {
   hidden: {
     clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
   },
@@ -35,7 +35,7 @@ const NavDrawer = (props: Props) => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                variants={drawerVariants}
+                variants={variants}
                 transition={transition}
                 className={
                   "fixed top-14 w-full transition-colors duration-[400ms] lg:hidden " +
