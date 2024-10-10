@@ -61,7 +61,7 @@ const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
 
     let labelClasses = "absolute top-0 text-sm font-poppins";
     let inputClasses =
-      "w-full pt-5 pb-3 rounded-none border-t-none border-x-none border-b-2 border-dark focus:outline-none focus:ring-0 !bg-white font-poppins text-sm text-dark placeholder:font-poppins placeholder:text-sm placeholder:text-muted";
+      "w-full pt-5 pb-3 rounded-none border-t-none border-x-none border-b-2 border-dark !bg-white font-poppins text-sm text-dark placeholder:font-poppins placeholder:text-sm placeholder:text-muted";
     let fileInputClasses =
       "flex h-full w-full cursor-pointer border-b-2 border-dark bg-white px-0 pb-8 font-poppins text-sm text-gray";
 
