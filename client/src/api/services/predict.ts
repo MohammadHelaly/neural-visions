@@ -1,6 +1,6 @@
+import { MutationOptionsWithoutFn } from "@/api/services/types";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import api from "@/api/client/axios";
-import { MutationOptionsWithoutFn } from "@/api/services/types";
 
 const useSubmitVQnAForm = (
   options?: MutationOptionsWithoutFn<unknown, unknown, FormData>,
