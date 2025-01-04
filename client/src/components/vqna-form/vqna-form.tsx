@@ -7,14 +7,14 @@ import FormInput from "@/components/form-input";
 import { useSubmitVQnAForm } from "@/api/services/predict";
 import { formatAnswer } from "@/lib/helpers";
 
-interface ResponseData {
+interface PredictionResponseData {
   answer: string;
   answer_type: string;
   answerability: number | string;
 }
 
-interface Response {
-  data: ResponseData;
+interface predictionResponseData {
+  data: PredictionResponseData;
 }
 
 const schema = z
@@ -92,7 +92,9 @@ const viewport = {
 };
 
 const ContactForm = () => {
-  const [response, setResponse] = useState<ResponseData | null>(null);
+  const [predictionResponseData, setPredictionResponseData] = useState<
+    PredictionResponseData | undefined
+  >(undefined);
   const hasInteracted = useRef(false);
 
   const {
@@ -111,16 +113,17 @@ const ContactForm = () => {
   const watchImage = watch("image");
 
   const { mutate, isPending } = useSubmitVQnAForm({
-    onSuccess: (response) => {
-      const { data } = response as Response;
-      setResponse({
+    onSuccess: (predictionResponseData: unknown) => {
+      const { data } = predictionResponseData as predictionResponseData;
+      setPredictionResponseData({
         answer: formatAnswer(data.answer),
         answer_type: formatAnswer(data.answer_type),
         answerability: formatAnswer(data.answerability as string, "percent"),
       });
+      reset();
     },
     onError: () => {
-      setResponse({
+      setPredictionResponseData({
         answer: "Something went wrong...",
         answer_type: "--",
         answerability: "--",
@@ -132,13 +135,14 @@ const ContactForm = () => {
     const formData = new FormData();
 
     formData.append("question", data.question);
-    if (data.image) {
+    if (data.image[0]) {
       formData.append("image", data.image[0]);
     } else if (data.image_url) {
       formData.append("image_url", data.image_url);
     }
     mutate(formData);
-    reset();
+
+    hasInteracted.current = false;
   };
 
   useEffect(() => {
@@ -152,13 +156,15 @@ const ContactForm = () => {
 
   const buttonDisabled = isPending || Object.keys(errors).length > 0;
 
-  const answerText = isPending ? "Loading..." : response?.answer || "--";
+  const answerText = isPending
+    ? "Loading..."
+    : predictionResponseData?.answer || "--";
   const answerTypeText = isPending
     ? "Loading..."
-    : response?.answer_type || "--";
+    : predictionResponseData?.answer_type || "--";
   const answerabilityText = isPending
     ? "Loading..."
-    : response?.answerability || "--";
+    : predictionResponseData?.answerability || "--";
 
   return (
     <motion.div
@@ -216,7 +222,6 @@ const ContactForm = () => {
             disabled={watchImage !== undefined && watchImage[0] !== undefined}
             {...register("image_url")}
           />
-
           <motion.button
             variants={buttonVariants}
             transition={buttonTransition}

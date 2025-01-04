@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify, make_response
 import torch
 import pickle
 import os
@@ -31,7 +31,7 @@ model = LinearNet(
 model.load_model(path_model)
 
 
-def allowed_format(image_name):
+def allowed_image_format(image_name):
     allowed_extensions = {"png", "jpg", "jpeg"}
     return (
         "." in image_name and image_name.rsplit(".", 1)[1].lower() in allowed_extensions
@@ -53,38 +53,39 @@ def apply_cors(response):
 
 
 @app.route("/", methods=["GET"])
-def home():
+def index():
     return send_from_directory(path_dist_directory, "index.html")
 
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    image_url_user = request.form.get("image_url")
-    question_user = request.form.get("question")
-    unique_image_filename = str(uuid.uuid4())
-    path_image_user = os.path.join(
-        path_images_directory, unique_image_filename + ".jpg"
-    )
+    try:
+        image_url_user = request.form.get("image_url")
+        question_user = request.form.get("question")
+        unique_image_filename = str(uuid.uuid4())
+        path_image_user = os.path.join(
+            path_images_directory, unique_image_filename + ".jpg"
+        )
 
-    if question_user is None or question_user == "":
-        return jsonify({"error": "question not provided"})
+        if not question_user:
+            return make_response(jsonify({"error": "Question not provided."}), 400)
 
-    if "image" in request.files:
-        image_user = request.files["image"]
+        if (not image_url_user) and "image" not in request.files:
+            return make_response(jsonify({"error": "Image not provided."}), 400)
 
-        if not allowed_format(image_user.filename):
-            return jsonify({"error": "image format not supported"})
+        if "image" in request.files:
+            image_user = request.files["image"]
 
-        else:
+            if not allowed_image_format(image_user.filename):
+                return make_response(
+                    jsonify({"error": "Image format not allowed."}), 400
+                )
+
             image_user.save(path_image_user)
 
-    elif image_url_user:
-        urllib.request.urlretrieve(image_url_user, path_image_user)
+        if image_url_user:
+            urllib.request.urlretrieve(image_url_user, path_image_user)
 
-    else:
-        return jsonify({"error": "image not provided"})
-
-    try:
         predicted_answer, predicted_answer_type, answerability = model.test_model(
             image_path=path_image_user, question=question_user
         )
@@ -95,19 +96,23 @@ def predict():
             predicted_answer_type.cpu().detach().numpy()
         )
 
-        os.remove(path_image_user)
-
-        response = jsonify(
-            {
-                "answer": answer[0][0],
-                "answer_type": answer_type[0][0],
-                "answerability": answerability.item(),
-            }
+        return make_response(
+            jsonify(
+                {
+                    "answer": answer[0][0],
+                    "answer_type": answer_type[0][0],
+                    "answerability": answerability.item(),
+                }
+            ),
+            200,
         )
-        return response
 
     except:
-        return jsonify({"error": "error during prediction"})
+        return make_response(jsonify({"error": "Prediction failed."}), 500)
+
+    finally:
+        if os.path.exists(path_image_user):
+            os.remove(path_image_user)
 
 
 if __name__ == "__main__":
