@@ -6,3 +6,4 @@ numpy
 matplotlib
 pillow
 flask
+flask-cors

@@ -7,16 +7,6 @@ import FormInput from "@/components/form-input";
 import { useSubmitVQnAForm } from "@/api/services/predict";
 import { formatAnswer } from "@/lib/helpers";
 
-interface PredictionResponseData {
-  answer: string;
-  answer_type: string;
-  answerability: number | string;
-}
-
-interface predictionResponseData {
-  data: PredictionResponseData;
-}
-
 const schema = z
   .object({
     question: z.string().min(1, { message: "Please enter a question." }),
@@ -92,8 +82,10 @@ const viewport = {
 };
 
 const ContactForm = () => {
-  const [predictionResponseData, setPredictionResponseData] = useState<
-    PredictionResponseData | undefined
+  const [answer, setAnswer] = useState<string | undefined>(undefined);
+  const [answerType, setAnswerType] = useState<string | undefined>(undefined);
+  const [answerability, setAnswerability] = useState<
+    number | string | undefined
   >(undefined);
   const hasInteracted = useRef(false);
 
@@ -112,24 +104,13 @@ const ContactForm = () => {
   const watchImageUrl = watch("image_url");
   const watchImage = watch("image");
 
-  const { mutate, isPending } = useSubmitVQnAForm({
-    onSuccess: (predictionResponseData: unknown) => {
-      const { data } = predictionResponseData as predictionResponseData;
-      setPredictionResponseData({
-        answer: formatAnswer(data.answer),
-        answer_type: formatAnswer(data.answer_type),
-        answerability: formatAnswer(data.answerability as string, "percent"),
-      });
-      reset();
-    },
-    onError: () => {
-      setPredictionResponseData({
-        answer: "Something went wrong...",
-        answer_type: "--",
-        answerability: "--",
-      });
-    },
-  });
+  const {
+    mutate,
+    isPending,
+    isSuccess,
+    isError,
+    data: response,
+  } = useSubmitVQnAForm();
 
   const formSubmitHandler = (data: schemaType) => {
     const formData = new FormData();
@@ -142,8 +123,14 @@ const ContactForm = () => {
     }
     mutate(formData);
 
-    hasInteracted.current = false;
+    markNotInteracted();
   };
+
+  const markInteracted = () => (hasInteracted.current = true);
+
+  const markNotInteracted = () => (hasInteracted.current = false);
+
+  const buttonDisabled = isPending || Object.keys(errors).length > 0;
 
   useEffect(() => {
     // Only trigger validation after the form has been interacted with
@@ -152,19 +139,31 @@ const ContactForm = () => {
     }
   }, [watchImageUrl, watchImage, trigger]);
 
-  const markInteracted = () => (hasInteracted.current = true);
+  useEffect(() => {
+    if (!isSuccess) return;
 
-  const buttonDisabled = isPending || Object.keys(errors).length > 0;
+    setAnswer(formatAnswer(response.data.data.answer));
+    setAnswerType(formatAnswer(response.data.data.answer_type));
+    setAnswerability(formatAnswer(response.data.data.answerability, "percent"));
 
-  const answerText = isPending
-    ? "Loading..."
-    : predictionResponseData?.answer || "--";
-  const answerTypeText = isPending
-    ? "Loading..."
-    : predictionResponseData?.answer_type || "--";
-  const answerabilityText = isPending
-    ? "Loading..."
-    : predictionResponseData?.answerability || "--";
+    reset();
+  }, [isSuccess, response]);
+
+  useEffect(() => {
+    if (!isError) return;
+
+    setAnswer("Something went wrong...");
+    setAnswerType(undefined);
+    setAnswerability(undefined);
+  }, [isError]);
+
+  useEffect(() => {
+    if (!isPending) return;
+
+    setAnswer("Loading...");
+    setAnswerType(undefined);
+    setAnswerability(undefined);
+  }, [isPending]);
 
   return (
     <motion.div
@@ -245,7 +244,7 @@ const ContactForm = () => {
         <div className="flex flex-col items-center gap-3">
           <p className="text-center font-poppins text-xl font-light">Answer</p>
           <h3 className="text-center font-poppins text-[calc(1.375rem_+_1.5vw)] font-light leading-[1.2] text-dark xl:text-[2.5rem]">
-            {answerText}
+            {answer ?? "--"}
           </h3>
         </div>
         <div className="flex flex-col items-center gap-3">
@@ -253,7 +252,7 @@ const ContactForm = () => {
             Answer Type
           </p>
           <h3 className="text-center font-poppins text-[calc(1.375rem_+_1.5vw)] font-light leading-[1.2] text-dark xl:text-[2.5rem]">
-            {answerTypeText}
+            {answerType ?? "--"}
           </h3>
         </div>
         <div className="flex flex-col items-center gap-3">
@@ -261,7 +260,7 @@ const ContactForm = () => {
             Answerability
           </p>
           <h3 className="text-center font-poppins text-[calc(1.375rem_+_1.5vw)] font-light leading-[1.2] text-dark xl:text-[2.5rem]">
-            {answerabilityText}
+            {answerability ?? "--"}
           </h3>
         </div>
       </motion.div>

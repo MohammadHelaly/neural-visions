@@ -7,4 +7,16 @@ type MutationOptionsWithoutFn<
   TContext = unknown,
 > = Omit<UseMutationOptions<TData, TError, TVariables, TContext>, "mutationFn">;
 
-export type { MutationOptionsWithoutFn };
+interface PredictionResponseData {
+  data: { answer: string; answer_type: string; answerability: string };
+}
+
+interface PredictionResponse {
+  data: PredictionResponseData;
+}
+
+export type {
+  MutationOptionsWithoutFn,
+  PredictionResponseData,
+  PredictionResponse,
+};
