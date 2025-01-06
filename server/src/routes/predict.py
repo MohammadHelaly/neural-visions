@@ -2,10 +2,10 @@ from flask import Blueprint, request
 import os
 import urllib.request
 import uuid
-from utils.api import send_response
-from utils.validators import is_valid_image, is_valid_url
-from utils.loaders import load_model_and_encoders
-from config import IMAGES_DIR
+from src.utils.api import send_response
+from src.utils.validators import is_valid_image, is_valid_url
+from src.utils.loaders import load_model_and_encoders
+from src.config import IMAGES_DIR
 
 predict = Blueprint("predict", __name__)
 

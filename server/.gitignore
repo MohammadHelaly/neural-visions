@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # Large model files not committed to git
-models/
+*.pth
+*.ckpt

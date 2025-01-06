@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
-CLIENT_DIR = os.path.join(BASE_DIR, "../client")
+CLIENT_DIR = os.path.join(BASE_DIR, "../../client")
 CLIENT_DIST_DIR = os.path.join(CLIENT_DIR, "./dist")
 
 IMAGES_DIR = os.path.join(BASE_DIR, "./images")

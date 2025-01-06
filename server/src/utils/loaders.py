@@ -1,14 +1,15 @@
+from typing import Any
 import pickle
 import torch
-from model import LinearNet
-from config import (
+from src.models import LinearNet
+from src.config import (
     MODEL_ENCODER_ANSWER_PATH,
     MODEL_ENCODER_ANSWER_TYPE_PATH,
     MODEL_PATH,
 )
 
 
-def load_encoder(encoder_path: str) -> pickle:
+def load_encoder(encoder_path: str) -> Any:
     with open(encoder_path, "rb") as f:
         encoder = pickle.load(f)
     return encoder
