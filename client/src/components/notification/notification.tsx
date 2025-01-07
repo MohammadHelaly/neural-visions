@@ -19,7 +19,7 @@ const transition = {
   duration: 0.4,
 };
 
-const Notifications = (props: Props) => {
+const Notification = (props: Props) => {
   const { open, onOpenChange, text, variant = "success" } = props;
 
   let contentClasses =
@@ -76,4 +76,4 @@ const Notifications = (props: Props) => {
   );
 };
 
-export default Notifications;
+export default Notification;

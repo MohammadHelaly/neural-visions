@@ -59,7 +59,7 @@ const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
     const { variant, label, error, id, disabled, labelHidden, value, ...rest } =
       props;
 
-    let labelClasses = "absolute top-0 text-sm font-poppins";
+    let labelClasses = "absolute top-0 text-sm font-poppins text-gray";
     let inputClasses =
       "w-full pt-5 pb-3 rounded-none border-t-none border-x-none border-b-2 border-dark !bg-white font-poppins text-sm text-dark placeholder:font-poppins placeholder:text-sm placeholder:text-muted";
     let fileInputClasses =
@@ -68,8 +68,7 @@ const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
     if (error) {
       labelClasses += " !text-red";
       inputClasses += " !border-red";
-    } else {
-      labelClasses += " text-gray";
+      fileInputClasses += " !border-red !text-red";
     }
 
     if (labelHidden) {
