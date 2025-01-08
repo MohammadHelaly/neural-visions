@@ -37,7 +37,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="bg-dark mb-10 overflow-x-hidden py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
+      className="mb-10 overflow-x-hidden bg-dark py-12 md:mb-20 lg:mb-28 xl:mb-32 2xl:mb-36"
     >
       <Container>
         <div className="flex flex-col items-center justify-center gap-12">
@@ -54,7 +54,7 @@ const ContactSection = () => {
                 viewport={viewport}
                 initial="initial"
                 whileInView="animate"
-                className="font-poppins w-full text-start text-xl font-light text-white"
+                className="w-full text-start font-poppins text-xl font-light text-white"
               >
                 We are a group of passionate computer engineering students from
                 Alexandria University who have a strong passion for deep
@@ -70,7 +70,7 @@ const ContactSection = () => {
                 viewport={viewport}
                 initial="initial"
                 whileInView="animate"
-                className="font-poppins py-6 text-[calc(1.375rem_+_1.5vw)] font-light leading-[1.2] text-white xl:text-[2.5rem]"
+                className="py-6 font-poppins text-[calc(1.375rem_+_1.5vw)] font-light leading-[1.2] text-white xl:text-[2.5rem]"
               >
                 Coming Soon...
               </motion.h4>

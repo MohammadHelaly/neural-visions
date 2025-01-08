@@ -56,8 +56,7 @@ const viewport = {
 
 const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
   (props, ref) => {
-    const { variant, label, error, id, disabled, labelHidden, value, ...rest } =
-      props;
+    const { variant, label, error, id, disabled, labelHidden, ...rest } = props;
 
     let labelClasses = "absolute top-0 text-sm font-poppins text-gray";
     let inputClasses =

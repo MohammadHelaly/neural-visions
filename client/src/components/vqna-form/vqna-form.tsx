@@ -155,7 +155,7 @@ const VQnAForm = () => {
     });
 
     reset();
-  }, [isSuccess, response]);
+  }, [isSuccess, response, reset]);
 
   useEffect(() => {
     if (!isError) return;

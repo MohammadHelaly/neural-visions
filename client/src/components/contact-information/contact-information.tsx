@@ -19,19 +19,19 @@ const ContactInformation = (props: Props) => {
           alt={typeof name === "string" ? name : "Profile photo"}
           className="aspect-square h-full rounded-none"
         />
-        <h3 className="font-poppins group-hover:text-dark text-base font-light text-white transition-colors duration-[200ms] max-[370px]:text-sm md:text-xl xl:text-2xl">
+        <h3 className="font-poppins text-base font-light text-white transition-colors duration-[200ms] group-hover:text-dark max-[370px]:text-sm md:text-xl xl:text-2xl">
           {name}
         </h3>
       </div>
       <div className="flex flex-row items-center justify-center gap-2 px-2 xl:gap-4">
         <Icon link={emailLink}>
-          <Gmail className="group-hover:fill-dark size-7 fill-white transition-colors duration-[200ms] md:size-9" />
+          <Gmail className="size-7 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-9" />
         </Icon>
         <Icon link={githubLink}>
-          <GitHub className="group-hover:fill-dark size-6 fill-white transition-colors duration-[200ms] md:size-8" />
+          <GitHub className="size-6 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-8" />
         </Icon>
         <Icon link={linkedinLink}>
-          <LinkedIn className="group-hover:fill-dark size-6 fill-white transition-colors duration-[200ms] md:size-8" />
+          <LinkedIn className="size-6 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-8" />
         </Icon>
       </div>
     </div>
