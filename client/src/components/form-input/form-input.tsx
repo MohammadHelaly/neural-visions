@@ -114,7 +114,7 @@ const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               {...(rest as ImageUploadProps)}
             />
 
-            <span className="absolute bottom-3 left-0 truncate text-sm text-muted">
+            <span className="pointer-events-none absolute bottom-3 left-0 truncate text-sm text-muted">
               {/* Hack to show the file name when a file is selected */}
               {rest.placeholder}
             </span>
