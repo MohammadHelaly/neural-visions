@@ -14,7 +14,7 @@ export default {
         "2xl": "1400px",
       },
       colors: {
-        muted: "rgba(124, 124, 124, 0.486)",
+        muted: "#7c7c7c7c",
         white: "#f8f9fa",
         dark: "#212529",
         gray: "#212529bf",

@@ -23,7 +23,7 @@ const Notification = (props: Props) => {
   const { open, onOpenChange, text, variant = "success" } = props;
 
   let contentClasses =
-    "fixed z-50 bottom-8 left-1/2 -ml-40 lg:ml-auto lg:left-auto lg:right-8 w-80 bg-white shadow-[0_0_36px_rgba(0,0,0,0.15)] border-b-2";
+    "fixed z-50 bottom-8 left-1/2 -ml-40 lg:ml-auto lg:left-auto lg:right-8 w-80 bg-white shadow-[0_0_36px_#00000026] border-b-2";
   let textClasses = "font-poppins font-normal text-sm";
 
   switch (variant) {
