@@ -24,13 +24,13 @@ const ContactInformation = (props: Props) => {
         </h3>
       </div>
       <div className="flex flex-row items-center justify-center gap-2 px-2 xl:gap-4">
-        <Icon link={emailLink}>
+        <Icon link={emailLink} name={name + "'s Email"}>
           <Email className="size-7 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-9" />
         </Icon>
-        <Icon link={githubLink}>
+        <Icon link={githubLink} name={name + "'s GitHub"}>
           <GitHub className="size-6 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-8" />
         </Icon>
-        <Icon link={linkedinLink}>
+        <Icon link={linkedinLink} name={name + "'s LinkedIn"}>
           <LinkedIn className="size-6 fill-white transition-colors duration-[200ms] group-hover:fill-dark md:size-8" />
         </Icon>
       </div>

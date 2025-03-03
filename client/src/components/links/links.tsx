@@ -12,16 +12,22 @@ const Links = (props: Props) => {
 
   return (
     <div className="flex flex-row items-center justify-center gap-2 lg:gap-5">
-      <Icon link="https://github.com/MohammadHelaly/neural-visions">
+      <Icon
+        link="https://github.com/MohammadHelaly/neural-visions"
+        name="GitHub"
+      >
         <GitHub className={`size-8 rounded-sm fill-${fillColor}`} />
       </Icon>
-      <Icon link="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering">
+      <Icon
+        link="https://www.kaggle.com/code/mohammadhelaly/visual-question-answering"
+        name="Kaggle"
+      >
         <Kaggle className={`size-8 rounded-sm fill-${fillColor}`} />
       </Icon>
-      <Icon link="https://openai.com/research/clip">
+      <Icon link="https://openai.com/research/clip" name="OpenAI">
         <OpenAi className={`size-8 rounded-sm fill-${fillColor}`} />
       </Icon>
-      <Icon link="https://vizwiz.org/tasks-and-datasets/vqa/">
+      <Icon link="https://vizwiz.org/tasks-and-datasets/vqa/" name="VizWiz">
         <VizWiz className={`size-10 rounded-sm fill-${fillColor}`} />
       </Icon>
     </div>
