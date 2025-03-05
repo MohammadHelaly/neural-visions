@@ -37,6 +37,7 @@ const App = () => {
         <ContactSection />
         <Notification
           text="This web app is still under development. Some features may not be available yet."
+          variant="info"
           open={notificationOpen}
           onOpenChange={setNotificationOpen}
         />

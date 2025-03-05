@@ -6,7 +6,7 @@ interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   text: string;
-  variant?: "success" | "error";
+  variant: "info" | "success" | "error" | "warning";
 }
 
 const variants = {
@@ -20,7 +20,7 @@ const transition = {
 };
 
 const Notification = (props: Props) => {
-  const { open, onOpenChange, text, variant = "success" } = props;
+  const { open, onOpenChange, text, variant } = props;
 
   let contentClasses =
     "fixed z-50 bottom-8 left-1/2 -ml-40 lg:ml-auto lg:left-auto lg:right-8 w-80 bg-white shadow-[0_0_36px_#00000026] border-b-2";
@@ -28,12 +28,21 @@ const Notification = (props: Props) => {
 
   switch (variant) {
     case "success":
-      contentClasses += " border-muted";
-      textClasses += " text-dark";
+      contentClasses += " border-green";
+      textClasses += " text-green";
       break;
     case "error":
       contentClasses += " border-red";
       textClasses += " text-red";
+      break;
+    case "warning":
+      contentClasses += " border-orange";
+      textClasses += " text-orange";
+      break;
+    case "info":
+    default:
+      contentClasses += " border-muted";
+      textClasses += " text-dark";
       break;
   }
 
@@ -64,9 +73,11 @@ const Notification = (props: Props) => {
                     </Dialog.Close>
                   </div>
                 </Dialog.Title>
-                <div className="p-6 pt-0">
-                  <p className={textClasses}>{text}</p>
-                </div>
+                <Dialog.Description asChild>
+                  <div className="p-6 pt-0">
+                    <p className={textClasses}>{text}</p>
+                  </div>
+                </Dialog.Description>
               </motion.div>
             </Dialog.Content>
           </Dialog.Portal>

@@ -8,6 +8,7 @@ import VQnAFormResponseItem from "@/components/vqna-form-response-item";
 import Notification from "@/components/notification";
 import { useSubmitVQnAForm } from "@/api/services/predict";
 import { formatAnswer } from "@/lib/helpers";
+import { useOnlineStatus } from "@/lib/hooks/web";
 
 type Prediction = {
   answer: string;
@@ -95,7 +96,13 @@ const VQnAForm = () => {
   );
   const [imageUrl, setImageUrl] = useState<string | undefined>();
   const [image, setImage] = useState<FileList | undefined>();
-  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notification, setNotification] = useState<{
+    open: boolean;
+    text: string;
+    variant: "info" | "success" | "warning" | "error";
+  }>({ open: false, text: "", variant: "info" });
+
+  const { isOnline } = useOnlineStatus();
 
   const {
     register,
@@ -123,6 +130,15 @@ const VQnAForm = () => {
   } = useSubmitVQnAForm();
 
   const formSubmitHandler = (data: schemaType) => {
+    if (!isOnline) {
+      setNotification({
+        open: true,
+        text: "You are offline. Please check your connection and try again.",
+        variant: "warning",
+      });
+      return;
+    }
+
     const formData = new FormData();
 
     formData.append("question", data.question);
@@ -160,7 +176,12 @@ const VQnAForm = () => {
   useEffect(() => {
     if (!isError) return;
 
-    setNotificationOpen(true);
+    setNotification({
+      open: true,
+      text: "Something went wrong while submitting the form. Please try again.",
+      variant: "error",
+    });
+
     setPrediction(undefined);
   }, [isError]);
 
@@ -264,10 +285,10 @@ const VQnAForm = () => {
         </motion.div>
       </motion.div>
       <Notification
-        open={notificationOpen}
-        onOpenChange={setNotificationOpen}
-        text="Something went wrong while submitting the form. Please try again."
-        variant="error"
+        open={notification.open}
+        onOpenChange={(open) => setNotification((prev) => ({ ...prev, open }))}
+        text={notification.text}
+        variant={notification.variant}
       />
     </>
   );
