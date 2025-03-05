@@ -44,9 +44,7 @@ const NavDrawer = (props: Props) => {
                 }
               >
                 <VisuallyHidden>
-                  <Dialog.Title asChild>
-                    <span className="sr-only hidden">Navigation Menu</span>
-                  </Dialog.Title>
+                  <Dialog.Title>Navigation Menu</Dialog.Title>
                 </VisuallyHidden>
                 <Dialog.Description asChild>
                   <nav>
