@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import NavLinks from "@/components/nav-links";
 
 interface Props {
@@ -42,11 +43,16 @@ const NavDrawer = (props: Props) => {
                   background
                 }
               >
-                <nav>
-                  <ul className="flex flex-col items-center gap-2 p-3 pt-0">
-                    <NavLinks />
-                  </ul>
-                </nav>
+                <VisuallyHidden>
+                  <Dialog.Title>Navigation Menu</Dialog.Title>
+                </VisuallyHidden>
+                <Dialog.Description asChild>
+                  <nav>
+                    <ul className="flex flex-col items-center gap-2 p-3 pt-0">
+                      <NavLinks />
+                    </ul>
+                  </nav>
+                </Dialog.Description>
               </motion.div>
             </Dialog.Content>
           </Dialog.Portal>
